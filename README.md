@@ -1,6 +1,13 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
+
+To install the dependencies:
+
+```bash
+yarn install
+# or simply 
+yarn
+```
+
 
 First, run the development server:
 
@@ -17,6 +24,38 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+## Setup database
+
+The database can run on docker or locally. To use the docker you need  `docker` installed on your machine.
+
+```bash
+# start
+docker-compose up --build
+
+# close 
+docker-compose down
+```
+
+To run migrations to your database:
+
+```bash
+yarn db:migration:run
+```
+
+To create new migrations automatically when you create or update entities:
+
+```bash
+yarn db:migration:generate -n [MIGRATION_NAME]
+```
+
+To generate template for manual migrations:
+
+```bash
+yarn db:migration:create -n [MIGRATION_NAME]
+```
+
+Refer to [typeorm documentation](https://typeorm.io/#/migrations) to learn more about migrations.
 
 ## Learn More
 
