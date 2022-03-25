@@ -4,18 +4,22 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
+  ManyToOne,
 } from 'typeorm'
+import { Answer } from './Answer'
+import { User } from './User'
 
 @Entity()
 export class Submission {
   @PrimaryGeneratedColumn()
   id!: number
 
-  @Column("simple-array")
-  answer!: string[];
+  @OneToMany(() => Answer, (answer) => answer.submission)
+  answers!: Answer[]
 
-  @Column('int')
-  submitted_by!: number
+  @ManyToOne(() => User, (user) => user.submissions)
+  submittedBy!: User
 
   @Column('varchar')
   state!: string

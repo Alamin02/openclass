@@ -4,7 +4,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToMany,
+  ManyToOne,
 } from 'typeorm'
+import { Question } from './Question';
+import { User } from './User';
 
 
 @Entity()
@@ -12,11 +16,11 @@ export class Quiz {
   @PrimaryGeneratedColumn()
   id!: number
 
-  @Column("simple-array")
-  question!: string[];
+  @ManyToOne(() => User, user => user.quizes)
+  createdBy!: User
 
-  @Column('int')
-  author_id!: number
+  @ManyToMany(() => Question, question => question.quizes)
+  questions!: Question[]
 
   @CreateDateColumn()
   createdAt!: Date
