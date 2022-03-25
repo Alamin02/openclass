@@ -17,7 +17,7 @@ export class Answer {
   @Column('simple-json')
   input!: { param: string }
 
-  @Column('double')
+  @Column('double precision')
   marks!: number
 
   @ManyToOne(() => Question, (question) => question.answers)

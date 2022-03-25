@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typeorm": "ts-node --transpile-only ./node_modules/typeorm/cli.js",
+    "db:migration:create": "yarn typeorm migration:create",
+    "db:migration:generate": "yarn typeorm migration:generate",
+    "db:migration:run": "yarn typeorm migration:run"
   },
   "dependencies": {
     "next": "12.1.0",
@@ -14,6 +18,7 @@
     "pg": "^8.7.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "ts-node": "^10.7.0",
     "typeorm": "^0.2.45"
   },
   "devDependencies": {
