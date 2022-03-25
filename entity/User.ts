@@ -4,7 +4,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm'
+import { Question } from './Question'
+import { Quiz } from './Quiz'
+import { Submission } from './Submission'
 
 export enum UserRole {
   ADMIN = 'admin',
@@ -24,6 +28,15 @@ export class User {
 
   @Column({ type: 'enum', enum: UserRole, default: UserRole.USER })
   role!: UserRole
+
+  @OneToMany(() => Question, (question) => question.createdBy)
+  questions!: Question[]
+
+  @OneToMany(() => Quiz, (quiz) => quiz.createdBy)
+  quizes!: Quiz[]
+
+  @OneToMany(() => Submission, (submission) => submission.submittedBy)
+  submissions!: Submission[]
 
   @CreateDateColumn()
   createdAt!: Date
